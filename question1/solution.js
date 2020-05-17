@@ -1,12 +1,16 @@
+const User = require('./User')
+
 function solution(record) {
   const answer = [];
   const uid = []
 
   record.forEach(el => {
     const command = el.split(' ');
+    let uid = command[1]
+    let username = command[2]
     switch (command[0]) {
       case 'Enter':
-        uid.push(command[1]); 
+        uid.push(new User (uid, username)); 
         answer.push(command[2] + "came in");
         break;
       
