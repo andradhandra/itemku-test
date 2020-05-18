@@ -1,31 +1,62 @@
-const User = require('./User')
+const User = require("./User");
 
 function solution(record) {
   const answer = [];
-  const uid = []
+  const users = [];
 
-  record.forEach(el => {
-    const command = el.split(' ');
-    let uid = command[1]
-    let username = command[2]
+  record.forEach((el) => {
+    const command = el.split(" ");
+    const uid = command[1];
+    const username = command[2];
+    const findUid = users.findIndex((user) => user.uid === uid);
+
     switch (command[0]) {
-      case 'Enter':
-        uid.push(new User (uid, username)); 
-        answer.push(command[2] + "came in");
+      case "Enter":
+        let user = "";
+        if (findUid > -1) {
+          user = users[findUid];
+          users[findUid].username = username;
+
+          user.record.forEach((answerIndex) => {
+            let answerStatus =
+              answer[answerIndex].split(" ")[1] +
+              " " +
+              answer[answerIndex].split(" ")[2];
+            answer.splice(answerIndex, 1, user.username + " " + answerStatus);
+          });
+        } else {
+          user = new User(uid, username);
+          user.record.push(answer.length);
+          users.push(user);
+        }
+        answer.push(user.username + " came in");
         break;
-      
-      case 'Leave':
-        const findUid = uid.indexOf(command[1]);
-        if (findUid === -1) answer.push("user uidentified");
+
+      case "Leave":
+        if (findUid === -1) answer.push("user unidentified");
         else {
-          answer.push(command[2] + "has left");
-          uid.splice(findUid, 1);
+          users[findUid].record.push(answer.length);
+          answer.push(users[findUid].username + " has left");
         }
         break;
 
-      case 'Change':
-        
-      default: 
+      case "Change":
+        if (findUid === -1) answer.push("user unidentified");
+        else {
+          let user = users[findUid];
+          users[findUid].username = username;
+
+          user.record.forEach((answerIndex) => {
+            let answerStatus =
+              answer[answerIndex].split(" ")[1] +
+              " " +
+              answer[answerIndex].split(" ")[2];
+            answer.splice(answerIndex, 1, user.username + " " + answerStatus);
+          });
+        }
+        break;
+
+      default:
         answer.push("Error command not found");
         break;
     }
@@ -33,4 +64,12 @@ function solution(record) {
   return answer;
 }
 
-console.log(solution(["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"]))
+console.log(
+  solution([
+    "Enter uid1234 Muzi",
+    "Enter uid4567 Prodo",
+    "Leave uid1234",
+    "Enter uid1234 Prodo",
+    "Change uid4567 Ryan",
+  ])
+);
