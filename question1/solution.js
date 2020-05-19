@@ -20,8 +20,8 @@ function solution(record) {
             users[findUid].username = username;
 
             user.record.forEach((answerIndex) => {
-              const status = answer[answerIndex].split(" ")
-              const answerStatus = status[1] + " " + status[2]
+              const status = answer[answerIndex].split(" ");
+              const answerStatus = status[1] + " " + status[2];
               answer.splice(answerIndex, 1, user.username + " " + answerStatus);
             });
           } else {
@@ -49,8 +49,8 @@ function solution(record) {
             users[findUid].username = username;
 
             user.record.forEach((answerIndex) => {
-              const status = answer[answerIndex].split(" ")
-              const answerStatus = status[1] + " " + status[2]
+              const status = answer[answerIndex].split(" ");
+              const answerStatus = status[1] + " " + status[2];
               answer.splice(answerIndex, 1, user.username + " " + answerStatus);
             });
           }

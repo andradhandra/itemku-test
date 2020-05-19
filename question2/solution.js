@@ -1,13 +1,21 @@
+const Stage = require("./Stage");
+
 function solution(N, users) {
   let answer = [];
-  if (N > 500) return "Error: total stage number exceed limit"
-  if (users.length > 200000) return "Error: total players exceed limit"
+  if (N > 500) return "Error: total stage number exceed limit";
+  if (users.length > 200000) return "Error: total players exceed limit";
 
-  let failureRate = []
-  for (let i=0; i<=N; i++) {
-    
+  let stages = [];
+  for (let i = 1; i <= N; i++) {
+    const stuck = users.filter((stage) => stage === i).length;
+    const pass = users.filter((stage) => stage >= i).length;
+
+    const stage = new Stage(i, stuck / pass);
+    stages.push(stage);
   }
-
+  
+  stages = stages.sort((a, b) => b.failureRate - a.failureRate);
+  answer = stages.map((stage) => stage.stage);
   return answer;
 }
 
