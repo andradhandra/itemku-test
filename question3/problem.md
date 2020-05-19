@@ -24,19 +24,29 @@ Of course, it is possible to uniquely identify all tuples in a relation using ["
 Therefore, the candidate key of the input above is ["student number"], ["name", "major"].
 
 Find how many candidate keys are there for given array relation.
+
 Answer Code format
 function solution(relation) {
     var answer = 0;
     return answer;
 }
+
 Limitations
 - relation is a two-dimensional string array.
 - The length of the relation column is 1 ~ 8, and each column indicates the attribute of the relation.
 - The length of the row of relation is 1 ~ 20, and each row represents a tuple of relations.
 - The length of all strings in relation is 1 ~ 8, and consists of only lowercase letters and numbers.
 - All tuples of relation are uniquely identifiable (ie, there are no duplicate tuples).
+
 Input and output examples
 relation: 
-[[“100”,”ryan”,”music”,”2”],[“200”,”apeach”,”math”,”2”],[“300”,”tube”,”computer”,”3”],[“400”,”con”,”computer”,”4”],[“500”,”muzi”,”music”,”3”],[“600”,”apeach”,”music”,”2”]]
+[
+    [“100”,”ryan”,”music”,”2”],
+    [“200”,”apeach”,”math”,”2”],
+    [“300”,”tube”,”computer”,”3”],
+    [“400”,”con”,”computer”,”4”],
+    [“500”,”muzi”,”music”,”3”],
+    [“600”,”apeach”,”music”,”2”]
+]
 
 answer: 2
