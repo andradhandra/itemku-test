@@ -4,11 +4,13 @@ The failure rate is defined as follows;
 Number of players who have reached the stage but have not yet cleared / Number of players who have reached the stage.
 
 Complete the function to return an array containing the number of the stage in descending order of the highest failure rate, when total stages N, an array users containing the stage in which the game user is currently playing are given as a parameter.
+
 Answer Code format
 function solution(N, users) {
     var answer = [];
     return answer;
 }
+
 Limitations
 - N, total stages: 1 ~ 500
 - users:
@@ -18,6 +20,7 @@ Limitations
 - Where (N + 1) represents the user who cleared the last stage (Nth stage).
 - If there is a stage with the same failure rate, the smaller number of stages should be placed first.
 - If there is no user who reaches the stage, the failure rate of the stage is 0.
+
 Input and output examples
 N: 5
 users: [2,1,2,6,2,4,3,3]
